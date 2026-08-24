@@ -1,0 +1,79 @@
+{
+  "name": "dsh-vscode-quickopen",
+  "displayName": "DSH Quick Open",
+  "description": "Open the DeepSeek Harness Web UI in VS Code; start `dsh web` automatically when it is not running.",
+  "version": "0.1.0",
+  "publisher": "smithsarah1227yue",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.82.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "deepseek",
+    "harness",
+    "dsh",
+    "web",
+    "browser",
+    "quickopen"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/smithsarah1227yue/dsh-vscode-quickopen.git"
+  },
+  "bugs": {
+    "url": "https://github.com/smithsarah1227yue/dsh-vscode-quickopen/issues"
+  },
+  "homepage": "https://github.com/smithsarah1227yue/dsh-vscode-quickopen",
+  "main": "./extension.js",
+  "activationEvents": [
+    "onCommand:dsh.openWebUI"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "dsh.openWebUI",
+        "title": "Open Web UI (start if needed)",
+        "category": "DSH",
+        "icon": "media/whale.svg"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "dsh.openWebUI",
+        "key": "ctrl+alt+d",
+        "mac": "cmd+shift+d"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "dsh.openWebUI",
+          "group": "navigation"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "DSH Quick Open",
+      "properties": {
+        "dshOpen.dshCommand": {
+          "type": "string",
+          "default": "",
+          "description": "The command used to launch the DSH web server. Leave empty to use `dsh` on PATH; set an absolute path if `dsh` is not on the PATH seen by VS Code (e.g. on macOS)."
+        },
+        "dshOpen.port": {
+          "type": "number",
+          "default": 3080,
+          "description": "The port the DSH web server listens on and that this extension opens."
+        },
+        "dshOpen.url": {
+          "type": "string",
+          "default": "",
+          "description": "Optional full URL to open. If set, overrides `dshOpen.port`."
+        }
+      }
+    }
+  }
+}
